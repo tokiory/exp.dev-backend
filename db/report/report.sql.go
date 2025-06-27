@@ -111,55 +111,55 @@ func (q *Queries) CreateReportWork(ctx context.Context, arg CreateReportWorkPara
 }
 
 const getReport = `-- name: GetReport :one
-SELECT reports.id, report_skills.report_id, report_skills.skills
+SELECT
+  reports.id,
+  report_persons.name,
+  report_persons.surname,
+  report_persons.patronymic,
+  report_persons.email,
+  report_persons.telegram,
+  report_works.position,
+  report_works.grade,
+  report_works.growth_message,
+  report_works.tasks_message,
+  report_skills.skills
 FROM reports
-JOIN report_skills ON reports.id = report_skills.report_id
+LEFT JOIN report_skills ON reports.id = report_skills.report_id
+LEFT JOIN report_works ON reports.id = report_works.report_id
+LEFT JOIN report_persons ON reports.id = report_persons.report_id
 WHERE reports.id = $1
 LIMIT 1
 `
 
 type GetReportRow struct {
-	ID       pgtype.UUID
-	ReportID pgtype.UUID
-	Skills   []byte
+	ID            pgtype.UUID
+	Name          pgtype.Text
+	Surname       pgtype.Text
+	Patronymic    pgtype.Text
+	Email         pgtype.Text
+	Telegram      pgtype.Text
+	Position      pgtype.Text
+	Grade         pgtype.Text
+	GrowthMessage pgtype.Text
+	TasksMessage  pgtype.Text
+	Skills        []byte
 }
 
 func (q *Queries) GetReport(ctx context.Context, id pgtype.UUID) (GetReportRow, error) {
 	row := q.db.QueryRow(ctx, getReport, id)
 	var i GetReportRow
-	err := row.Scan(&i.ID, &i.ReportID, &i.Skills)
+	err := row.Scan(
+		&i.ID,
+		&i.Name,
+		&i.Surname,
+		&i.Patronymic,
+		&i.Email,
+		&i.Telegram,
+		&i.Position,
+		&i.Grade,
+		&i.GrowthMessage,
+		&i.TasksMessage,
+		&i.Skills,
+	)
 	return i, err
-}
-
-const getReports = `-- name: GetReports :many
-SELECT reports.id, report_skills.report_id, report_skills.skills
-FROM reports
-JOIN report_skills ON reports.id = skills.report_id
-WHERE reports.id = $1
-`
-
-type GetReportsRow struct {
-	ID       pgtype.UUID
-	ReportID pgtype.UUID
-	Skills   []byte
-}
-
-func (q *Queries) GetReports(ctx context.Context, id pgtype.UUID) ([]GetReportsRow, error) {
-	rows, err := q.db.Query(ctx, getReports, id)
-	if err != nil {
-		return nil, err
-	}
-	defer rows.Close()
-	var items []GetReportsRow
-	for rows.Next() {
-		var i GetReportsRow
-		if err := rows.Scan(&i.ID, &i.ReportID, &i.Skills); err != nil {
-			return nil, err
-		}
-		items = append(items, i)
-	}
-	if err := rows.Err(); err != nil {
-		return nil, err
-	}
-	return items, nil
 }

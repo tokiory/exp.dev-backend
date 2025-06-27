@@ -1,15 +1,22 @@
 -- name: GetReport :one
-SELECT reports.*, report_skills.*
+SELECT
+  reports.id,
+  report_persons.name,
+  report_persons.surname,
+  report_persons.patronymic,
+  report_persons.email,
+  report_persons.telegram,
+  report_works.position,
+  report_works.grade,
+  report_works.growth_message,
+  report_works.tasks_message,
+  report_skills.skills
 FROM reports
-JOIN report_skills ON reports.id = report_skills.report_id
+LEFT JOIN report_skills ON reports.id = report_skills.report_id
+LEFT JOIN report_works ON reports.id = report_works.report_id
+LEFT JOIN report_persons ON reports.id = report_persons.report_id
 WHERE reports.id = $1
 LIMIT 1;
-
--- name: GetReports :many
-SELECT reports.*, report_skills.*
-FROM reports
-JOIN report_skills ON reports.id = skills.report_id
-WHERE reports.id = $1;
 
 -- name: CreateReport :one
 INSERT INTO reports (id)

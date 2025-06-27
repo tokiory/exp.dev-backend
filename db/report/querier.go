@@ -16,7 +16,6 @@ type Querier interface {
 	CreateReportSkills(ctx context.Context, arg CreateReportSkillsParams) error
 	CreateReportWork(ctx context.Context, arg CreateReportWorkParams) error
 	GetReport(ctx context.Context, id pgtype.UUID) (GetReportRow, error)
-	GetReports(ctx context.Context, id pgtype.UUID) ([]GetReportsRow, error)
 }
 
 var _ Querier = (*Queries)(nil)
