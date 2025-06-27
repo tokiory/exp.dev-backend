@@ -1,5 +1,5 @@
-<h3 align="center">exp.dev (backend)</h3>
-<sup align="center">A backend for a <a target="_blank" href="github.com/tokiory/exp.dev">exp.dev</a> project</sup>
+<h3 align="center">✨[bkend] exp.dev✨</h3>
+<p align="center"><sup>A backend for a <a target="_blank" href="github.com/tokiory/exp.dev">exp.dev</a> project</sup></p>
 
 
 # Docker
