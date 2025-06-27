@@ -1,0 +1,12 @@
+version: "2"
+
+sql:
+  - engine: "postgresql"
+    queries: "query/report.sql"
+    schema: "migration"
+    gen:
+      go:
+        emit_interface: true
+        package: "report"
+        out: "report"
+        sql_package: "pgx/v5"

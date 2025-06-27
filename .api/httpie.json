@@ -1,0 +1,103 @@
+{
+  "meta": {
+    "format": "httpie",
+    "version": "1.0.0",
+    "contentType": "workspace",
+    "schema": "https://schema.httpie.io/1.0.0.json",
+    "docs": "https://httpie.io/r/help/export-from-httpie",
+    "source": "HTTPie Desktop 2025.2.0"
+  },
+  "entry": {
+    "name": "exp.dev",
+    "icon": {
+      "name": "database",
+      "color": "green"
+    },
+    "collections": [
+      {
+        "name": "Basic",
+        "icon": {
+          "name": "triangle",
+          "color": "pink"
+        },
+        "auth": {
+          "type": "none"
+        },
+        "requests": [
+          {
+            "name": "Health Check",
+            "url": "localhost:8080/health",
+            "method": "GET",
+            "headers": [],
+            "queryParams": [],
+            "pathParams": [],
+            "auth": {
+              "type": "inherited"
+            },
+            "body": {
+              "type": "none",
+              "file": {
+                "name": ""
+              },
+              "text": {
+                "value": "",
+                "format": "application/json"
+              },
+              "form": {
+                "isMultipart": false,
+                "fields": []
+              },
+              "graphql": {
+                "query": "",
+                "variables": ""
+              }
+            }
+          }
+        ]
+      },
+      {
+        "name": "Report",
+        "icon": {
+          "name": "wrench",
+          "color": "yellow"
+        },
+        "auth": {
+          "type": "none"
+        },
+        "requests": [
+          {
+            "name": "Send Report",
+            "url": "localhost:8080/report",
+            "method": "POST",
+            "headers": [],
+            "queryParams": [],
+            "pathParams": [],
+            "auth": {
+              "type": "inherited"
+            },
+            "body": {
+              "type": "text",
+              "file": {
+                "name": ""
+              },
+              "text": {
+                "value": "{\n    \"date\": \"2025-06-27T00:35:01.965Z\",\n    \"personal\": {\n        \"name\": \"Даниил\",\n        \"surname\": \"Шило\",\n        \"patronymic\": \"Вадимович\",\n        \"email\": \"tokiory.personal@gmail.com\",\n        \"telegram\": \"@tokiory\"\n    },\n    \"work\": {\n        \"grade\": \"teamlead\",\n        \"position\": \"frontend_developer\",\n        \"growthMessage\": \"\",\n        \"specificTasksMessage\": \"\"\n    },\n    \"skills\": {\n        \"d3js\": 1,\n        \"pixijs\": 2,\n        \"webgl\": 5,\n        \"html\": 4,\n        \"css\": 5,\n        \"javascript\": 3,\n        \"typescript\": 3,\n        \"vue\": 5\n    }\n}",
+                "format": "application/json"
+              },
+              "form": {
+                "isMultipart": false,
+                "fields": []
+              },
+              "graphql": {
+                "query": "",
+                "variables": ""
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "environments": [],
+    "drafts": []
+  }
+}
